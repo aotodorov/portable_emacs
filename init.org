@@ -1,0 +1,46 @@
+* About
+  This is a first attempt at literate init.el file.
+  This whole direcotry should be under git version control
+* Code
+  Use the package system of emacs to install any packages. 
+  #+BEGIN_SRC elisp :tangle init.el
+    (require 'package)
+
+    (add-to-list 'package-archives '("org-plus-contrib" . "https://orgmode.org/elpa/"))
+    (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+  #+END_SRC
+  
+  Required packages
+  #+BEGIN_SRC elisp :tangle init.el
+
+    (require 'use-package)
+
+    (use-package org
+      :ensure org-plus-contrib
+      )
+
+    (require 'evil)
+    (evil-mode t)
+    (require 'evil-surround)
+    (require 'evil-org)
+    (add-hook 'org-mode-hook 'evil-org-mode)
+
+    (require 'htmlize)
+  #+END_SRC
+  
+  Languages.
+  #+BEGIN_SRC elisp :tangle init.el
+    (org-babel-do-load-languages
+     'org-babel-load-languages '(
+				 (python . t)
+				 ))
+  #+END_SRC
+  
+  Custom file seperate from the init file.
+  #+BEGIN_SRC elisp :tangle init.el
+    (setq custom-file "~/.emacs.d/custom.el")
+    (load custom-file)
+
+  #+END_SRC
+* Appendix
+  #+INCLUDE: "~/.emacs.d/init.el"  src emacs-lisp 
