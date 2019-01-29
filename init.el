@@ -20,6 +20,7 @@
 (org-babel-do-load-languages
  'org-babel-load-languages '(
 			     (python . t)
+			     (shell . t)
 			     ))
 
 (setq custom-file "~/.emacs.d/custom.el")
